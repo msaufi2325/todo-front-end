@@ -1,10 +1,9 @@
-import { Button } from '@nextui-org/react';
-
+import TodoList
+ from "./components/todos/todo-list";
 export default function Home() {
   return (
     <div>
-      To Do List
-      <Button>Click me</Button>
+      <TodoList />      
     </div>
   );
 }
