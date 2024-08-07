@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { Card } from '@nextui-org/react';
 
 interface Todo {
   id: number;
@@ -47,10 +48,14 @@ export default function TodoList() {
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
-            <h3 style={{ fontWeight: 'bold' }}>{todo.title}</h3>
-            <p>{todo.details}</p>
-            <p>Priority: {todo.priority}</p>
-            <p>{todo.completed ? "Completed" : "Not Completed"}</p>
+            <div className="p-4 border mt-2 mb-2">
+              <Card className="max-2-[400px] p-2">
+                <h3 style={{ fontWeight: 'bold' }}>{todo.title}</h3>
+                <p>{todo.details}</p>
+                <p>Priority: {todo.priority}</p>
+                <p>{todo.completed ? "Completed" : "Not Completed"}</p>
+              </Card>
+            </div>
           </li>
         ))}
       </ul>
