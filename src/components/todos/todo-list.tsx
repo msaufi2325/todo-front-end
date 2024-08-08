@@ -84,7 +84,7 @@ export default function TodoList() {
                           backgroundColor: getBackgroundColor(todo.priority),
                         }}
                       >
-                        <h3 style={{ fontWeight: "bold", textAlign: "left" }}>{todo.title}</h3>
+                        <h3 style={{ fontWeight: "bold", }}>{todo.title}</h3>
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent>
