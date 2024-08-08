@@ -41,6 +41,19 @@ export default function TodoList() {
     setTodos(todoList);
   }, []);
 
+  const getBackgroundColor = (priority: string) => {
+    switch (priority) {
+      case "High":
+        return "#DF3562";
+      case "Medium":
+        return "#E9A845";
+      case "Low":
+        return "#D4D4D8";
+      default:
+        return "white";
+    }
+  }
+
   return (
     <div>
       <h2 style={{ color: 'blue' }}>To Do</h2>
@@ -49,7 +62,7 @@ export default function TodoList() {
         {todos.map((todo) => (
           <li key={todo.id}>
             <div className="p-4 border mt-2 mb-2">
-              <Card className="max-2-[400px] p-2">
+              <Card className="max-2-[400px] p-2" style={{ backgroundColor: getBackgroundColor(todo.priority) }}>
                 <h3 style={{ fontWeight: 'bold' }}>{todo.title}</h3>
                 <p>{todo.details}</p>
                 <p>Priority: {todo.priority}</p>
