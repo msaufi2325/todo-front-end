@@ -1,6 +1,8 @@
 'use client';
+import React from 'react';
 import { useEffect, useState } from 'react';
-import { Card } from '@nextui-org/react';
+import { Card, CardHeader, CardBody, Divider, Checkbox } from '@nextui-org/react';
+import { Popover, PopoverTrigger,PopoverContent, Button } from '@nextui-org/react';
 
 interface Todo {
   id: number;
@@ -41,6 +43,17 @@ export default function TodoList() {
     setTodos(todoList);
   }, []);
 
+
+  const handleComplete = (id: number) => {
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, completed: !todo.completed };
+      }
+      return todo;
+    });
+    setTodos(updatedTodos);
+  };
+
   const getBackgroundColor = (priority: string) => {
     switch (priority) {
       case "High":
@@ -56,17 +69,35 @@ export default function TodoList() {
 
   return (
     <div>
-      <h2 style={{ color: 'blue' }}>To Do</h2>
-      <hr style={{ border: '1px solid black' }} />
+      <h2 style={{ color: "blue" }}>To Do</h2>
+      <hr style={{ border: "1px solid black" }} />
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
             <div className="p-4 border mt-2 mb-2">
-              <Card className="max-2-[400px] p-2" style={{ backgroundColor: getBackgroundColor(todo.priority) }}>
-                <h3 style={{ fontWeight: 'bold' }}>{todo.title}</h3>
-                <p>{todo.details}</p>
-                <p>Priority: {todo.priority}</p>
-                <p>{todo.completed ? "Completed" : "Not Completed"}</p>
+              <Card className="max-2-[400px] p-2">
+                <CardBody>
+                  <Popover placement="bottom" showArrow={true}>
+                    <PopoverTrigger>
+                      <Button
+                        style={{
+                          backgroundColor: getBackgroundColor(todo.priority),
+                        }}
+                      >
+                        <h3 style={{ fontWeight: "bold", textAlign: "left" }}>{todo.title}</h3>
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent>
+                      <p>{todo.details}</p>
+                    </PopoverContent>
+                  </Popover>
+                  <Checkbox
+                    checked={todo.completed}
+                    onChange={() => handleComplete(todo.id)}
+                  >
+                    {todo.completed ? "Completed" : "Not Completed"}
+                  </Checkbox>
+                </CardBody>
               </Card>
             </div>
           </li>
