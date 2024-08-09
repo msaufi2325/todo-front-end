@@ -76,27 +76,31 @@ export default function TodoList() {
           <li key={todo.id}>
             <div className="p-4 border mt-2 mb-2">
               <Card className="max-2-[400px] p-2">
+                <CardHeader style={{ backgroundColor: getBackgroundColor(todo.priority) }}>
+                  <h3 style={{ fontWeight: "bold" }}>{todo.title}</h3>
+                </CardHeader>
                 <CardBody>
-                  <Popover placement="bottom" showArrow={true}>
-                    <PopoverTrigger>
-                      <Button
-                        style={{
-                          backgroundColor: getBackgroundColor(todo.priority),
-                        }}
-                      >
-                        <h3 style={{ fontWeight: "bold", }}>{todo.title}</h3>
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent>
-                      <p>{todo.details}</p>
-                    </PopoverContent>
-                  </Popover>
-                  <Checkbox
-                    checked={todo.completed}
-                    onChange={() => handleComplete(todo.id)}
-                  >
-                    {todo.completed ? "Completed" : "Not Completed"}
-                  </Checkbox>
+                  <div className="flex">
+                    <Popover placement="bottom" showArrow={true}>
+                      <PopoverTrigger>
+                        <Button>Details</Button>
+                      </PopoverTrigger>
+                      <PopoverContent>
+                        <div className="px-1 py-2">
+                          <div>
+                            {todo.details}
+                          </div>
+                        </div>
+                      </PopoverContent>
+                    </Popover>
+                    <Checkbox
+                      className="ml-2"
+                      checked={todo.completed}
+                      onChange={() => handleComplete(todo.id)}
+                    >
+                      {todo.completed ? "Completed" : "Not Completed"}
+                    </Checkbox>
+                  </div>
                 </CardBody>
               </Card>
             </div>
