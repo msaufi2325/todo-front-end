@@ -77,7 +77,7 @@ export default function TodoList() {
             <div className="p-4 border mt-2 mb-2">
               <Card className="max-2-[400px] p-2">
                 <CardHeader style={{ backgroundColor: getBackgroundColor(todo.priority) }}>
-                  <h3 style={{ fontWeight: "bold" }}>{todo.title}</h3>
+                  <h3>{todo.title}</h3>
                 </CardHeader>
                 <CardBody>
                   <div className="flex">
