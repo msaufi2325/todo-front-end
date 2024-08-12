@@ -7,6 +7,9 @@ export default function Header() {
       <NavbarBrand>
         <Link href="/" className="font-bold">Todo List</Link>
       </NavbarBrand>
+      <NavbarContent justify="end">
+        Login
+      </NavbarContent>
     </Navbar>
   );
 }
